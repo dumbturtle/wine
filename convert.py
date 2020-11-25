@@ -1,6 +1,16 @@
-import pandas
+from collections import defaultdict
 from pprint import pprint
-excel_data_df = pandas.read_excel('wine2.xlsx', sheet_name='Лист1', na_values=' ', keep_default_na=False, usecols=['Категория', 'Название', 'Сорт', 'Цена', 'Картинка'])
-excel_data_df['dict'] = excel_data_df[['Название', 'Сорт', 'Цена', 'Картинка']].to_dict("records")
-excel_data_df = excel_data_df[['Категория', 'dict']]
-pprint(excel_data_df.groupby('Категория')['dict'].apply(list).to_dict())
+
+import pandas
+
+excel_data_df = pandas.read_excel(
+    "wine2.xlsx",
+    sheet_name="Лист1",
+    na_values=" ",
+    keep_default_na=False,
+    usecols=["Категория", "Название", "Сорт", "Цена", "Картинка"],
+)
+wine_dict = defaultdict(list)
+for data in excel_data_df.to_dict("records"):
+    wine_dict[data["Категория"]].append(data)
+pprint(wine_dict)
