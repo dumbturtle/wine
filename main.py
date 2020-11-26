@@ -20,11 +20,11 @@ age = current_year - birthday_of_wine
 
 
 excel_data_df = pandas.read_excel(
-    "wine2.xlsx",
+    "wine3.xlsx",
     sheet_name="Лист1",
     na_values=" ",
     keep_default_na=False,
-    usecols=["Категория", "Название", "Сорт", "Цена", "Картинка"],
+    usecols=["Категория", "Название", "Сорт", "Цена", "Картинка", "Акция"],
 )
 
 dict_of_wines = defaultdict(list)
