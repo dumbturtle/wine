@@ -11,13 +11,9 @@ env = Environment(
 
 template = env.get_template("template.html")
 
-# Расчет возраста
 birthday_of_wine = 1920
 current_year = datetime.datetime.now().year
 age = current_year - birthday_of_wine
-
-# Перечень вина
-
 
 excel_data_df = pandas.read_excel(
     "wine3.xlsx",
