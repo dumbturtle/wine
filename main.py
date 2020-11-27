@@ -9,7 +9,7 @@ import pandas
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 parser = argparse.ArgumentParser(
-    description='Сайт по продаже вина'
+    description='Сайт по продаже вина.'
 )
 env = Environment(
     loader=FileSystemLoader("."), autoescape=select_autoescape(["html", "xml"])
@@ -21,15 +21,15 @@ birthday_of_wine_shop = 1920
 current_year = datetime.datetime.now().year
 shop_age = current_year - birthday_of_wine_shop
 
-parser.add_argument('filename', help='File name of wine description.', nargs='?', default='default_description.xlsx')
+parser.add_argument('path_to_file', help='File name of wine description.', nargs='?', default='default_description.xlsx')
 args = parser.parse_args()
-filename = args.filename
+path_to_file = args.path_to_file
 
-if not os.path.exists(filename):
-    sys.exit('File with descriptions is not found!')
+if not os.path.exists(path_to_file):
+    sys.exit('File with descriptions of wine is not found!')
 
 wine_descriptions_form_file = pandas.read_excel(
-    filename,
+    path_to_file,
     sheet_name="Лист1",
     na_values=" ",
     keep_default_na=False,
